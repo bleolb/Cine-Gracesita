@@ -4,8 +4,7 @@ import { Card } from 'react-native-elements';
 import { Link } from "react-router-native";
 import axios from 'axios';
 
-// const API = "http://192.168.0.8:5000/film/";
-const API = "http://172.16.11.111:5000/film/";
+const API = "http://192.168.100.4:5000/film/";
 
 
 

@@ -21,7 +21,27 @@ class AddMovie extends Component {
 
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
+
     }
+    encodeImageFileAsURL = (e) => {
+        const reader = new FileReader();
+        const file = new Blob([e.target.value], { type: 'img/png' });
+        this.setState({ imagen: file });
+        reader.onloadend = e => {
+            this.setState({ imagen: e.target.result })
+        }
+        reader.readAsDataURL(file);
+    }
+    onFileChange = (e) => {
+        let file = e.target.files[0]
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            this.setState({ imagen: reader.result })
+            console.log(reader.result)
+        }
+        reader.readAsDataURL(file);
+    }
+    
 
     saveData = e => {
         e.preventDefault()
@@ -31,7 +51,7 @@ class AddMovie extends Component {
                 resumen: this.state.resumen,
                 categoria: this.state.categoria,
                 valorBoleto: this.state.valorBoleto,
-                // imagen: this.state.imagen,
+                imagen: this.state.imagen,
                 estado: this.state.estado,
             }
         }
@@ -39,8 +59,8 @@ class AddMovie extends Component {
         if (this.post.datos.titulo === "" ||
             this.post.datos.resumen === "" ||
             this.post.datos.categoria === "" ||
-            this.post.datos.valorBoleto === ""
-            // this.post.datos.imagen === ""
+            this.post.datos.valorBoleto === "" ||
+             this.post.datos.imagen === ""
         ) {
             alert("Complete todos los datos para continuar...");
         } else {
@@ -62,7 +82,7 @@ class AddMovie extends Component {
             resumen,
             categoria,
             valorBoleto,
-            // imagen,
+             imagen,
         } = this.state
         return (
             <div>
@@ -109,6 +129,20 @@ class AddMovie extends Component {
                                         onChange={this.changeHandler}
                                     />
                                 </div>
+                                <div className="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                                <label className=" block text-sm text-gray-600" htmlFor="imagen">
+                                    Imagen
+                </label>
+                                <input
+                                    className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded"
+                                    id="imagen"
+                                    name="imagen"
+                                    type="file"
+                                    required={true}
+                                    defaultValue={imagen}
+                                    onChange={this.onFileChange}
+                                />
+                            </div>
                                 <div className="md:w-1/3 px-3">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="valorBoleto">
                                         Valor del Boleto

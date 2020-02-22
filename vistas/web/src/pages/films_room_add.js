@@ -63,7 +63,7 @@ class FilmsRoomAdd extends Component {
             this.post.datos.idpelicula === "" ||
             this.post.datos.idhorario === ""
             ) {
-          alert("Complete todos los datos para continuar...");
+          alert("LLene los campos");
         } else {
           axios.post(API+"sala_pelicula", this.post)
           .then(response => {
@@ -89,7 +89,7 @@ class FilmsRoomAdd extends Component {
                     <main className="my-8">
                         <p className="text-center my-5 text-2xl">Asignar Peliculas.</p>
                         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 mx-8" onSubmit={ this.saveData }>
-                            <p className="text-red text-xs italic">Asignaciòn de peliculas a una sala y su horario.</p>
+                            <p className="text-red text-xs italic">Asignacion de pelicula a sala  horario.</p>
                             <hr />
                             <div className="-mx-3 md:flex mb-6 ">
                                 <div className="md:w-1/3 px-3 mb-6 md:mb-0">
@@ -101,7 +101,7 @@ class FilmsRoomAdd extends Component {
                                         value={ idsala }
                                         onChange={this.changeHandler}>
                                             <option className="text-sm text-gray-600">
-                                                Seleccione sala....
+                                                Seleccione sala
                                             </option>
                                             { salas.map(element => (<option key={ element.id } value={ element.id }> { element.nombre } </option>))}
                                     </select>

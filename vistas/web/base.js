@@ -12,7 +12,7 @@ class App extends React.Component {
     }
   }
  
-  // Callback~
+
   getFiles(files){
     this.setState({ files: files })
   }

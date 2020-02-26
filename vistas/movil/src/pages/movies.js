@@ -5,7 +5,7 @@ import { Card } from 'react-native-elements';
 import axios from 'axios';
 
 
-const API = "http://192.168.100.4:5000/film/pelicula";
+const API = "http://192.168.100.19:5000/film/pelicula";
 
 export default class Movies extends Component {
     constructor(props) {
@@ -19,7 +19,6 @@ export default class Movies extends Component {
         axios.get(API)
             .then(response => {
                 this.setState({ peliculas: response.data.datos })
-        //    alert(JSON.stringify(response.data.datos[0]))
             })
             .catch(error => {
                 console.log(error)
@@ -40,7 +39,7 @@ export default class Movies extends Component {
             <ImageBackground style = { styles.container } source = { require('../../assets/bg.jpg') } >
                 <View style = { styles.overlayContainer } >
                     <View style = { styles.top } >
-                        <Text style = { styles.header } > ESTRENOS </Text>   
+                        <Text style = { styles.header } > PELICULAS </Text>   
                     </View >
 
                     <ScrollView vertical = { true } > 
@@ -48,7 +47,6 @@ export default class Movies extends Component {
                         peliculas.map(element =>
                             <Link to = "/movie_detail" key = { element.id } onPress={ () => this.asyncstorageSave(element.id) }>
                                 <Card title = { element.titulo } image={{uri:`${element.imagen}`}}/>
-                                {/* <Image  source={`${element.imagen}`}/> */}
                             </Link >
                         )
                     } 
@@ -77,7 +75,6 @@ const styles = StyleSheet.create({
     header: {
         color: '#fff',
         fontSize: 28,
-        borderRadius: 50,
         borderColor: 'blue',
         borderWidth: 2,
         padding: 20,

@@ -5,7 +5,7 @@ import { Link } from "react-router-native";
 import { RadioButton } from 'react-native-paper';
 import axios from 'axios';
 
-const API = "http://192.168.100.4:5000/film/";
+const API = "http://192.168.100.19:5000/film/";
 
 export default class MovieDetail extends Component {
   constructor(props) {
@@ -14,7 +14,6 @@ export default class MovieDetail extends Component {
       checked: '',
       pelicula: [],
       sala_peliculas: [],
-      //
       idpelicula: '',
     };
   }
